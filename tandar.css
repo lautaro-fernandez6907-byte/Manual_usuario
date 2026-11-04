@@ -573,14 +573,15 @@ a { text-decoration: none; color: inherit; }
     letter-spacing: -0.01em;
 }
 .tn-btn.primary {
-    background: var(--nav-active);
+    background: var(--azul-med);
     color: #fff;
-    box-shadow: 0 2px 8px rgba(11, 174, 244, 0.3);
+    border-color: transparent;
+    box-shadow: 0 2px 8px rgba(43, 114, 173, 0.3);
 }
 .tn-btn.primary:hover {
-    background: #07819C;
+    background: var(--azul);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(11, 174, 244, 0.4);
+    box-shadow: 0 4px 12px rgba(43, 114, 173, 0.4);
 }
 .tn-btn.success   { background: var(--verde);   color: #fff; }
 .tn-btn.success:hover   { background: #237a4f; }
