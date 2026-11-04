@@ -5,92 +5,91 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Manual de usuario y guía rápida de TANDAR-CNEA">
     <title>TANDAR-CNEA | Manual de usuario</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="cnea-logo.png">
+    <link rel="stylesheet" href="tandar.css">
+    <link rel="stylesheet" href="manual.css">
+    <script>
+        /* Aplica el tema antes de pintar, para evitar el parpadeo */
+        (function () {
+            var t = null;
+            try { t = localStorage.getItem("tandar-theme"); } catch (e) {}
+            if (t !== "dark" && t !== "light") {
+                t = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+            }
+            document.documentElement.setAttribute("data-theme", t);
+        })();
+    </script>
 </head>
-<body id="top">
+<body id="top" class="manual">
 
-<header class="nav">
-    <a class="brand" href="#top">
-        <span class="brand-mark"><span></span><span></span><span></span></span>
-        <span>TANDAR <span>CNEA</span></span>
-    </a>
-    <nav class="nav-links">
-        <a href="#introduccion">Introducción</a>
+<!-- ── TOPBAR ── -->
+<div class="tn-topbar">
+    <span>Comisión Nacional de Energía Atómica · Centro Atómico Constituyentes</span>
+    <span class="tn-topbar-links">
         <a href="#guia">Guía rápida</a>
-        <a href="#roles">Roles</a>
-        <a href="#flujo">Flujo</a>
-        <a href="#manual">Manual</a>
-        <a href="#faq">FAQ</a>
-    </nav>
-    <button class="theme-btn" id="themeBtn" aria-label="Cambiar modo de color">☼</button>
-    <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
+        <a href="#faq">Preguntas frecuentes</a>
+    </span>
+</div>
+
+<!-- ── NAVBAR ── -->
+<header class="tn-navbar">
+    <a class="tn-brand" href="#top">
+        <img class="tn-logo" src="cnea-logo.png" alt="Logo de la CNEA">
+        <span class="tn-brand-text">
+            <strong>TANDAR-CNEA</strong>
+            <em>Manual de usuario</em>
+        </span>
+    </a>
+
+    <div class="tn-navbar-right">
+        <button class="tn-nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false">☰</button>
+        <div class="tn-user-menu">
+            <button class="theme-toggle" id="themeBtn" aria-label="Cambiar modo de color">☼</button>
+        </div>
+        <nav class="tn-nav-links" id="navLinks">
+            <a href="#introduccion">Introducción</a>
+            <a href="#roles">Roles</a>
+            <a href="#flujo">Flujo</a>
+            <a href="#guia">Guía rápida</a>
+            <a href="#manual">Manual</a>
+            <a href="#estados">Estados</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+    </div>
 </header>
 
-<main class="manual-page">
-
-<section class="hero manual-hero">
-    <div class="hero-grid"></div>
-    <div class="reveal">
-        <div class="eyebrow"><i></i> Manual de usuario · Guía rápida</div>
-        <h1>TANDAR-CNEA<br><em>Manual de usuario</em></h1>
-        <p class="hero-text">
-            Guía para utilizar el sistema web de gestión de turnos de irradiación
-            del TANDAR — Centro Atómico Constituyentes, Comisión Nacional de Energía Atómica (CNEA).
+<!-- ── ENCABEZADO ── -->
+<section class="tn-page-header">
+    <img class="tn-watermark" src="cnea-logo.png" alt="" aria-hidden="true">
+    <div class="tn-page-header-inner">
+        <div class="manual-eyebrow"><i></i> Manual de usuario · Guía rápida</div>
+        <h1>TANDAR-CNEA<br>Manual de usuario</h1>
+        <p class="lead">
+            Guía para utilizar el sistema web de gestión de turnos de irradiación del TANDAR —
+            Centro Atómico Constituyentes, Comisión Nacional de Energía Atómica (CNEA).
         </p>
-        <div class="hero-actions">
-            <a class="btn primary" href="#guia">Empezar guía <span>→</span></a>
-            <a class="btn secondary" href="#manual">Ver manual completo</a>
+        <div class="tn-header-stats">
+            <span class="tn-header-stat aprov">● Sistema web</span>
+            <span class="tn-header-stat modif">Gestión de turnos de irradiación</span>
+            <span class="tn-header-stat pend">4 roles · 5 etapas</span>
         </div>
-        <div class="hero-meta">
-            <div><strong>TANDAR</strong><span>Centro Atómico Constituyentes</span></div>
-            <div><strong>CNEA</strong><span>Comisión Nacional de Energía Atómica</span></div>
-            <div><strong class="status"><i></i>Sistema web</strong><span>Gestión de turnos</span></div>
+        <div class="header-actions">
+            <a class="tn-btn primary lg" href="#guia">Empezar guía →</a>
+            <a class="tn-btn plain lg" href="#manual">Ver manual completo</a>
         </div>
-    </div>
-
-    <div class="hero-visual reveal delay-2">
-        <div class="orbit orbit-a"></div>
-        <div class="orbit orbit-b"></div>
-        <div class="dashboard-card">
-            <div class="window-bar">
-                <div class="dots"><i></i><i></i><i></i></div>
-                <span class="window-title">TANDAR-CNEA · Panel</span>
-                <span class="live">● ACTIVO</span>
-            </div>
-            <div class="dashboard-body">
-                <aside class="dash-sidebar">
-                    <span class="mini-logo">T</span>
-                    <span class="side-active"></span>
-                    <span></span><span></span><span></span><span></span>
-                </aside>
-                <div class="dash-main">
-                    <div class="dash-head"><div><small>SISTEMA DE TURNOS</small><b>Mis turnos</b></div><span class="avatar">TC</span></div>
-                    <div class="metric-row">
-                        <div class="metric"><small>Solicitudes</small><b>05</b><span>registradas</span></div>
-                        <div class="metric"><small>Pendientes</small><b class="up">02</b><span>en revisión</span></div>
-                        <div class="metric"><small>Aprobadas</small><b class="ok">03</b><span>confirmadas</span></div>
-                    </div>
-                    <div class="dash-panel">
-                        <div class="panel-title"><b>Solicitudes recientes</b><span>Estado</span></div>
-                        <div class="request"><span class="line-dot blue"></span><span>Experimento TANDAR</span><b class="pill blue">Pendiente</b></div>
-                        <div class="request"><span class="line-dot orange"></span><span>Irradiación experimental</span><b class="pill green">Aprobada</b></div>
-                        <div class="request"><span class="line-dot purple"></span><span>Ensayo de materiales</span><b class="pill amber">En revisión</b></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="float-card fc-one"><span>✓</span><div><b>Flujo digital</b><small>Roles y aprobaciones</small></div></div>
-        <div class="float-card fc-two"><span>⌁</span><div><b>Calendario</b><small>Ocupación por línea</small></div></div>
     </div>
 </section>
 
-<section class="section" id="introduccion">
-    <div class="two-col">
-        <div class="section-heading reveal">
-            <div class="section-label">01 · INTRODUCCIÓN</div>
-            <h2>¿Qué es <span>TANDAR-CNEA?</span></h2>
+<main class="tn-container">
+
+    <!-- ── 01 INTRODUCCIÓN ── -->
+    <section class="m-section" id="introduccion">
+        <div class="m-head">
+            <div class="tn-section-title"><span class="m-dot"></span>01 · Introducción</div>
+            <h2 class="m-h2">¿Qué es TANDAR-CNEA?</h2>
         </div>
-        <div class="intro-copy reveal delay-1">
+
+        <div class="tn-card celeste m-prose">
             <p>
                 TANDAR-CNEA es el sistema web utilizado en TANDAR para gestionar las solicitudes
                 de turno de irradiación en las distintas líneas experimentales del acelerador.
@@ -104,285 +103,337 @@
                 queda aprobada con un número de solicitud asignado.
             </p>
         </div>
-    </div>
 
-    <div class="principles reveal">
-        <div class="principle"><span>01</span><h3>Solicitudes</h3><p>Creación y seguimiento digital de turnos de irradiación.</p></div>
-        <div class="principle"><span>02</span><h3>Aprobaciones</h3><p>Flujo de revisión según el rol de cada persona.</p></div>
-        <div class="principle"><span>03</span><h3>Calendario</h3><p>Consulta de las fechas reservadas por línea experimental.</p></div>
-        <div class="principle"><span>04</span><h3>Historial</h3><p>Registro de las actuaciones y estados de las solicitudes.</p></div>
-    </div>
-</section>
-
-<section class="section advances" id="roles">
-    <div class="section-top">
-        <div class="section-heading reveal">
-            <div class="section-label">02 · ROLES DEL SISTEMA</div>
-            <h2>Cuatro roles,<br><span>un mismo circuito.</span></h2>
+        <div class="tn-stats">
+            <div class="tn-stat pend">
+                <div class="tn-stat-num">01</div>
+                <div class="tn-stat-label">Solicitudes</div>
+                <p class="tn-stat-desc">Creación y seguimiento digital de turnos de irradiación.</p>
+            </div>
+            <div class="tn-stat aprov">
+                <div class="tn-stat-num">02</div>
+                <div class="tn-stat-label">Aprobaciones</div>
+                <p class="tn-stat-desc">Flujo de revisión según el rol de cada persona.</p>
+            </div>
+            <div class="tn-stat modif">
+                <div class="tn-stat-num">03</div>
+                <div class="tn-stat-label">Calendario</div>
+                <p class="tn-stat-desc">Consulta de las fechas reservadas por línea experimental.</p>
+            </div>
+            <div class="tn-stat celeste">
+                <div class="tn-stat-num">04</div>
+                <div class="tn-stat-label">Historial</div>
+                <p class="tn-stat-desc">Registro de las actuaciones y estados de las solicitudes.</p>
+            </div>
         </div>
-        <p class="section-description reveal delay-1">
-            El rol determina qué páginas puede ver cada persona y qué acciones puede realizar.
-        </p>
-    </div>
+    </section>
 
-    <div class="role-grid">
-        <article class="role-card reveal"><div class="role-number">ROL 01</div><h3>Investigador</h3><p>Solicita turnos de irradiación, sigue el estado desde “Mis turnos”, responde a propuestas de fecha y descarga el documento final.</p></article>
-        <article class="role-card reveal delay-1"><div class="role-number">ROL 02</div><h3>Responsable de línea</h3><p>Aprueba, rechaza o propone modificar solicitudes correspondientes a sus líneas antes de que pasen a Radioprotección.</p></article>
-        <article class="role-card reveal delay-2"><div class="role-number">ROL 03</div><h3>Oficial de Radioprotección</h3><p>Completa la “Página 2” con las condiciones de seguridad radiológica o rechaza la solicitud cuando corresponda.</p></article>
-        <article class="role-card reveal delay-3"><div class="role-number">ROL 04</div><h3>Jefe de Operaciones</h3><p>Realiza la aprobación final, asigna el número de solicitud, gestiona usuarios y líneas y comunica cambios de último momento.</p></article>
-    </div>
-
-    <div class="info-card orange reveal">
-        <strong>Caso especial:</strong> si un Responsable de línea solicita un turno para una línea que él mismo gestiona,
-        la solicitud queda aprobada automáticamente en ese primer paso y pasa directamente al Oficial de Radioprotección.
-    </div>
-</section>
-
-<section class="section workflow" id="flujo">
-    <div class="section-top">
-        <div class="section-heading reveal">
-            <div class="section-label">03 · FLUJO GENERAL</div>
-            <h2>De la solicitud<br><span>a la aprobación.</span></h2>
+    <!-- ── 02 ROLES ── -->
+    <section class="m-section" id="roles">
+        <div class="m-head">
+            <div class="tn-section-title"><span class="m-dot"></span>02 · Roles del sistema</div>
+            <h2 class="m-h2">Cuatro roles, un mismo circuito.</h2>
+            <p class="m-lead">El rol determina qué páginas puede ver cada persona y qué acciones puede realizar.</p>
         </div>
-        <p class="section-description reveal delay-1">
-            En el caso general, una solicitud atraviesa cuatro etapas de revisión antes de quedar aprobada.
-        </p>
-    </div>
 
-    <div class="flow reveal">
-        <div class="flow-line"></div>
-        <div class="step"><div class="step-icon">01</div><small>INVESTIGADOR</small><h3>Crea</h3><p>Carga los datos del experimento y solicita el turno.</p></div>
-        <div class="step"><div class="step-icon">02</div><small>RESPONSABLE</small><h3>Revisa</h3><p>Aprueba, rechaza o propone otra fecha.</p></div>
-        <div class="step"><div class="step-icon">03</div><small>RADIOPROTECCIÓN</small><h3>Evalúa</h3><p>Completa la Página 2 o rechaza la solicitud.</p></div>
-        <div class="step"><div class="step-icon">04</div><small>OPERACIONES</small><h3>Aprueba</h3><p>Realiza la aprobación final y asigna el número.</p></div>
-        <div class="step"><div class="step-icon final">✓</div><small>FINAL</small><h3>Confirmado</h3><p>La fecha queda reservada y se genera el documento final.</p></div>
-    </div>
-</section>
-
-<section class="section" id="guia">
-    <div class="section-top">
-        <div class="section-heading reveal">
-            <div class="section-label">04 · QUICK START</div>
-            <h2>Guía rápida<br><span>para empezar.</span></h2>
+        <div class="m-grid cols-2">
+            <article class="tn-card modif">
+                <div class="tn-card-header"><span class="tn-card-id">Investigador</span><span class="tn-badge modif">ROL 01</span></div>
+                <p class="m-desc">Solicita turnos de irradiación, sigue el estado desde “Mis turnos”, responde a propuestas de fecha y descarga el documento final.</p>
+            </article>
+            <article class="tn-card pend">
+                <div class="tn-card-header"><span class="tn-card-id">Responsable de línea</span><span class="tn-badge pend">ROL 02</span></div>
+                <p class="m-desc">Aprueba, rechaza o propone modificar solicitudes correspondientes a sus líneas antes de que pasen a Radioprotección.</p>
+            </article>
+            <article class="tn-card aprov">
+                <div class="tn-card-header"><span class="tn-card-id">Oficial de Radioprotección</span><span class="tn-badge aprov">ROL 03</span></div>
+                <p class="m-desc">Completa la “Página 2” con las condiciones de seguridad radiológica o rechaza la solicitud cuando corresponda.</p>
+            </article>
+            <article class="tn-card celeste">
+                <div class="tn-card-header"><span class="tn-card-id">Jefe de Operaciones</span><span class="tn-badge celeste">ROL 04</span></div>
+                <p class="m-desc">Realiza la aprobación final, asigna el número de solicitud, gestiona usuarios y líneas y comunica cambios de último momento.</p>
+            </article>
         </div>
-        <p class="section-description reveal delay-1">Los pasos esenciales para utilizar el sistema según cada rol.</p>
-    </div>
 
-    <div class="steps">
-        <div class="step-card reveal"><div class="step-num">01</div><div><h4>Investigador — pedir un turno</h4><p>Iniciá sesión, entrá a “Solicitar turno”, elegí línea y fechas, completá los datos del experimento y seguí el avance desde “Mis turnos”.</p></div></div>
-        <div class="step-card reveal delay-1"><div class="step-num">02</div><div><h4>Responsable — aprobar una solicitud</h4><p>Desde el Panel de Responsable de Línea, revisá las solicitudes pendientes y elegí Aprobar, Rechazar o Proponer modificación.</p></div></div>
-        <div class="step-card reveal delay-2"><div class="step-num">03</div><div><h4>Radioprotección — completar Página 2</h4><p>Elegí la condición de operación, el personal mínimo y las indicaciones adicionales. Al guardar, la solicitud pasa al Jefe de Operaciones.</p></div></div>
-        <div class="step-card reveal delay-3"><div class="step-num">04</div><div><h4>Jefe de Operaciones — aprobación final</h4><p>Abrí la solicitud con Página 2 completa y seleccioná Aprobar. Se asigna el número, se reserva la fecha y se notifica al investigador.</p></div></div>
-    </div>
-</section>
-
-<section class="section" id="manual">
-    <div class="section-label">05 · MANUAL DETALLADO</div>
-
-    <article class="manual-section" id="acceso">
-        <h2>Acceso al sistema</h2>
-        <h3>Crear una cuenta</h3>
-        <p>Desde la pantalla de inicio de sesión, hacé clic en “Crear cuenta” y completá nombre, apellido, email y contraseña (mínimo 8 caracteres, con confirmación). Toda cuenta nueva se crea con el rol “Investigador”.</p>
-        <h3>Iniciar sesión</h3>
-        <p>Ingresá tu email y contraseña en <strong>/auth/login.php</strong>. Si las credenciales son correctas, el sistema te lleva automáticamente al panel correspondiente a tu rol.</p>
-        <h3>Recuperar contraseña</h3>
-        <p>Desde “¿Olvidaste la contraseña?” ingresá tu email para recibir un enlace que permite definir una contraseña nueva. El enlace tiene un tiempo de validez limitado.</p>
-    </article>
-
-    <article class="manual-section" id="investigador">
-        <h2>Investigador</h2>
-        <h3>Solicitar un turno</h3>
-        <ul>
-            <li>Línea experimental y rango de fechas (desde / hasta).</li>
-            <li>Título del experimento, tipo de haz, tipo de blanco y características del blanco.</li>
-            <li>Lista de investigadores participantes, hasta 20.</li>
-            <li>Tabla de iones/haz: ion, símbolo, corriente (pnA), tensión terminal (MV) y energía (MeV), hasta 10 filas.</li>
-            <li>Irradiación nocturna y días concretos, cuando corresponda.</li>
-            <li>Permanencia en sala y observaciones libres.</li>
-        </ul>
-        <div class="info-card blue"><strong>Importante:</strong> el sistema no permite elegir fechas ya reservadas en esa línea ni fechas pasadas.</div>
-
-        <h3>Mis turnos</h3>
-        <p>Es el panel principal del investigador. Muestra una tarjeta por cada solicitud con línea, fechas, estado y observaciones, ordenadas de la más reciente a la más antigua.</p>
-        <ul>
-            <li>Editar mientras esté “Pendiente Responsable” y no tenga contrapropuesta enviada.</li>
-            <li>Confirmar, rechazar o contraproponer una fecha ante una propuesta del responsable.</li>
-            <li>Confirmar o rechazar una propuesta del Jefe de Operaciones.</li>
-            <li>Consultar el motivo de una solicitud rechazada.</li>
-            <li>Ocultar del propio historial las solicitudes ya finalizadas.</li>
-        </ul>
-    </article>
-
-    <article class="manual-section" id="responsable">
-        <h2>Responsable de línea</h2>
-        <p>El menú incluye Solicitudes, Historial, Calendario y Último momento. Si no tiene ninguna línea asignada, el sistema muestra un aviso para contactar al Oficial de Radioprotección.</p>
-        <h3>Acciones sobre solicitudes</h3>
-        <table class="data-table">
-            <thead><tr><th>Acción</th><th>Qué pide</th><th>Qué sucede</th></tr></thead>
-            <tbody>
-                <tr><td>✔ Aprobar</td><td>Nada adicional.</td><td>Pasa a “Pendiente de Radioprotección” y se notifica al Oficial.</td></tr>
-                <tr><td>✖ Rechazar</td><td>Motivo obligatorio.</td><td>Queda “Rechazada por responsable” y se notifica al investigador.</td></tr>
-                <tr><td>✏ Proponer modificación</td><td>Fecha desde / hasta y motivo.</td><td>Pasa a “Modificada por responsable” y el investigador debe responder.</td></tr>
-            </tbody>
-        </table>
-        <h3>Confirmadas por el usuario</h3>
-        <p>Cuando el investigador confirma una fecha propuesta por el responsable, la solicitud aparece en la sección de confirmadas y el responsable debe presionar “Enviar al Oficial de Radioprotección” para que continúe el circuito.</p>
-    </article>
-
-    <article class="manual-section" id="radioproteccion">
-        <h2>Oficial de Radioprotección</h2>
-        <p>Este rol recibe las solicitudes aprobadas por el responsable de línea y realiza la evaluación de seguridad radiológica mediante la “Página 2”.</p>
-        <h3>Completar Página 2</h3>
-        <ul>
-            <li>Condición de operación: A, B, C1, C2 o D.</li>
-            <li>Personal mínimo requerido: “1 Operador”, “1 Operador + 1 usuario calificado” o “1 Operador + 1 Oficial de radioprotección”.</li>
-            <li>Otras indicaciones mediante casilleros predefinidos.</li>
-            <li>Observaciones adicionales, opcionales.</li>
-        </ul>
-        <div class="info-card green"><strong>Al guardar:</strong> la solicitud pasa a “Pendiente Administrador” y se notifica al Jefe de Operaciones.</div>
-        <h3>Rechazar una solicitud</h3>
-        <p>Si la solicitud no puede autorizarse por motivos de radioprotección, puede rechazarse indicando un motivo obligatorio.</p>
-    </article>
-
-    <article class="manual-section" id="administrador">
-        <h2>Jefe de Operaciones</h2>
-        <p>Es el rol con más funciones: aprobación final, administración de usuarios y roles, asignación de líneas y avisos de cambios de último momento.</p>
-        <h3>Aprobación final</h3>
-        <table class="data-table">
-            <thead><tr><th>Acción</th><th>Qué pide</th><th>Resultado</th></tr></thead>
-            <tbody>
-                <tr><td>✔ Aprobar</td><td>Página 2 completa.</td><td>Asigna número, reserva fecha, notifica al investigador y habilita el documento final.</td></tr>
-                <tr><td>✖ Rechazar</td><td>Motivo obligatorio.</td><td>La solicitud queda rechazada.</td></tr>
-                <tr><td>↩ Devolver a RP</td><td>Motivo obligatorio.</td><td>Vuelve al Oficial de Radioprotección.</td></tr>
-                <tr><td>✏ Proponer modificación</td><td>Fechas propuestas y motivo.</td><td>El investigador debe confirmar o rechazar la nueva fecha.</td></tr>
-            </tbody>
-        </table>
-        <h3>Editar Página 2</h3>
-        <p>Desde el detalle de cada solicitud también se puede acceder a “Editar Página 2” para corregir la evaluación de radioprotección sin devolver el trámite al Oficial.</p>
-
-        <h3>Administración de usuarios</h3>
-        <ul>
-            <li>Cambiar el rol de otras cuentas.</li>
-            <li>Activar o desactivar cuentas.</li>
-            <li>Eliminar cuentas; si poseen historial, se desactivan para conservar la trazabilidad.</li>
-            <li>Asignar o quitar líneas experimentales a Responsables de línea.</li>
-        </ul>
-        <div class="info-card orange"><strong>Seguridad:</strong> no se puede cambiar el propio rol, ni desactivarse o eliminarse a uno mismo.</div>
-
-        <h3>Avisar un cambio de último momento</h3>
-        <ol>
-            <li>Buscar y seleccionar el turno afectado.</li>
-            <li>Subir un archivo Excel (.xlsx) con “Hora desde” y “Hora hasta”.</li>
-            <li>Escribir un resumen para el investigador y el responsable, o dejar que el sistema lo genere automáticamente.</li>
-            <li>Enviar el aviso. Los destinatarios reciben una notificación y pueden consultar el cambio y el Excel adjunto.</li>
-        </ol>
-    </article>
-
-    <article class="manual-section" id="comunes">
-        <h2>Funciones comunes</h2>
-        <h3>Calendario</h3>
-        <p>Muestra en formato mensual todas las fechas reservadas por línea experimental, cada una con un color distinto.</p>
-        <h3>Historial</h3>
-        <p>Reúne las solicitudes del sistema —o de las líneas propias, según el rol— agrupadas por mes y con buscador por solicitante, línea y experimento.</p>
-        <h3>Notificaciones y “Último momento”</h3>
-        <p>El ícono muestra un punto rojo cuando existen avisos sin leer. Allí se listan los cambios de horario sobre turnos ya aprobados y se puede consultar la solicitud completa o descargar el Excel adjunto.</p>
-        <h3>Modo oscuro</h3>
-        <p>El botón de sol/luna alterna entre modo claro y oscuro. La preferencia se guarda en el navegador y se mantiene entre sesiones.</p>
-    </article>
-
-    <article class="manual-section" id="documento">
-        <h2>Documento final</h2>
-        <p>Una vez que una solicitud queda “Aprobada”, desde “Ver detalle completo” o desde el historial se puede generar el documento final, identificado con el número de solicitud y el año.</p>
-        <div class="feature-grid">
-            <div class="feature"><div class="icon">01</div><h3>Página 1</h3><p>Datos del solicitante, línea, experimento, turno, tipo de haz y blanco, permanencia, irradiación nocturna y observaciones.</p></div>
-            <div class="feature featured"><div class="icon">02</div><h3>Página 2</h3><p>Condición de operación, personal mínimo, indicaciones, observaciones, Oficial responsable y fecha.</p></div>
-            <div class="feature"><div class="icon">03</div><h3>Exportación</h3><p>Impresión o guardado como PDF. El Jefe de Operaciones también puede descargar una versión editable en Excel.</p></div>
+        <div class="tn-alert warn">
+            <strong>Caso especial:</strong> si un Responsable de línea solicita un turno para una línea que él mismo gestiona,
+            la solicitud queda aprobada automáticamente en ese primer paso y pasa directamente al Oficial de Radioprotección.
         </div>
-    </article>
-</section>
+    </section>
 
-<section class="section" id="estados">
-    <div class="section-label">06 · ESTADOS</div>
-    <div class="section-heading reveal"><h2>Glosario de <span>estados.</span></h2></div>
-    <div class="status-list">
-        <div class="status-item"><b>Pendiente Responsable</b><span>Recién creada; espera la revisión del responsable.</span></div>
-        <div class="status-item"><b>Modificada por responsable</b><span>El responsable propuso otra fecha; espera respuesta.</span></div>
-        <div class="status-item"><b>Rechazada por responsable</b><span>El responsable de línea rechazó la solicitud.</span></div>
-        <div class="status-item"><b>Confirmada — esperando envío</b><span>El investigador confirmó la propuesta; falta el envío al Oficial.</span></div>
-        <div class="status-item"><b>Pendiente de Radioprotección</b><span>Fue aprobada por el responsable y espera la Página 2.</span></div>
-        <div class="status-item"><b>Pendiente Administrador</b><span>La Página 2 está completa; espera aprobación final.</span></div>
-        <div class="status-item"><b>Modificación propuesta</b><span>El Jefe de Operaciones propuso otra fecha.</span></div>
-        <div class="status-item"><b>Propuesta invalidada</b><span>La fecha propuesta fue tomada por otra solicitud.</span></div>
-        <div class="status-item"><b>Aprobada</b><span>Turno confirmado, con número asignado y fecha reservada.</span></div>
-        <div class="status-item"><b>Rechazada</b><span>Rechazada por Radioprotección o por el Jefe de Operaciones.</span></div>
-    </div>
-</section>
+    <!-- ── 03 FLUJO ── -->
+    <section class="m-section" id="flujo">
+        <div class="m-head">
+            <div class="tn-section-title"><span class="m-dot"></span>03 · Flujo general</div>
+            <h2 class="m-h2">De la solicitud a la aprobación.</h2>
+            <p class="m-lead">En el caso general, una solicitud atraviesa cuatro etapas de revisión antes de quedar aprobada.</p>
+        </div>
 
-<section class="section" id="faq">
-    <div class="section-label">07 · PREGUNTAS FRECUENTES</div>
-    <div class="section-heading reveal"><h2>Preguntas <span>frecuentes.</span></h2></div>
+        <div class="m-flow">
+            <div class="tn-card modif"><div class="m-step-num">01</div><div class="m-step-role">Investigador</div><h3>Crea</h3><p>Carga los datos del experimento y solicita el turno.</p></div>
+            <div class="tn-card pend"><div class="m-step-num">02</div><div class="m-step-role">Responsable</div><h3>Revisa</h3><p>Aprueba, rechaza o propone otra fecha.</p></div>
+            <div class="tn-card celeste"><div class="m-step-num">03</div><div class="m-step-role">Radioprotección</div><h3>Evalúa</h3><p>Completa la Página 2 o rechaza la solicitud.</p></div>
+            <div class="tn-card inv"><div class="m-step-num">04</div><div class="m-step-role">Operaciones</div><h3>Aprueba</h3><p>Realiza la aprobación final y asigna el número.</p></div>
+            <div class="tn-card aprov"><div class="m-step-num final">✓</div><div class="m-step-role">Final</div><h3>Confirmado</h3><p>La fecha queda reservada y se genera el documento final.</p></div>
+        </div>
+    </section>
 
-    <details class="faq" open><summary>¿Por qué no puedo editar mi solicitud?</summary><p>Solo se puede editar mientras está “Pendiente Responsable”, antes de que el responsable de línea la haya aprobado, rechazado o propuesto una modificación.</p></details>
-    <details class="faq"><summary>¿Qué pasa si borro mi historial por error?</summary><p>No se pierde información. La acción solo oculta de tu propia vista las solicitudes ya finalizadas; los demás roles siguen viéndolas y quedan registradas.</p></details>
-    <details class="faq"><summary>¿Por qué una propuesta de fecha aparece como invalidada?</summary><p>Mientras se esperaba una respuesta, esa fecha fue tomada por otra solicitud en la misma línea experimental. Hay que solicitar o proponer una fecha que siga disponible.</p></details>
-    <details class="faq"><summary>¿Por qué el botón “Aprobar” del Jefe de Operaciones está deshabilitado?</summary><p>Porque el Oficial de Radioprotección todavía no completó la Página 2. Hay que esperar a que la complete o, si corresponde, usar “Devolver a RP”.</p></details>
-    <details class="faq"><summary>¿Cómo consigo el rol de Responsable de línea u Oficial de Radioprotección?</summary><p>El rol se asigna manualmente desde “Administración de Usuarios”, función exclusiva del Jefe de Operaciones. Hay que solicitarlo a quien cumpla ese rol en el grupo.</p></details>
+    <!-- ── 04 GUÍA RÁPIDA ── -->
+    <section class="m-section" id="guia">
+        <div class="m-head">
+            <div class="tn-section-title"><span class="m-dot"></span>04 · Quick start</div>
+            <h2 class="m-h2">Guía rápida para empezar.</h2>
+            <p class="m-lead">Los pasos esenciales para utilizar el sistema según cada rol.</p>
+        </div>
 
-    <a class="back-top" href="#top">↑ Volver al inicio</a>
-</section>
+        <div class="m-steps">
+            <div class="tn-card modif"><div class="m-num">01</div><div><h3>Investigador — pedir un turno</h3><p>Iniciá sesión, entrá a “Solicitar turno”, elegí línea y fechas, completá los datos del experimento y seguí el avance desde “Mis turnos”.</p></div></div>
+            <div class="tn-card pend"><div class="m-num">02</div><div><h3>Responsable — aprobar una solicitud</h3><p>Desde el Panel de Responsable de Línea, revisá las solicitudes pendientes y elegí Aprobar, Rechazar o Proponer modificación.</p></div></div>
+            <div class="tn-card aprov"><div class="m-num">03</div><div><h3>Radioprotección — completar Página 2</h3><p>Elegí la condición de operación, el personal mínimo y las indicaciones adicionales. Al guardar, la solicitud pasa al Jefe de Operaciones.</p></div></div>
+            <div class="tn-card celeste"><div class="m-num">04</div><div><h3>Jefe de Operaciones — aprobación final</h3><p>Abrí la solicitud con Página 2 completa y seleccioná Aprobar. Se asigna el número, se reserva la fecha y se notifica al investigador.</p></div></div>
+        </div>
+    </section>
 
-<section class="cta">
-    <div class="cta-glow"></div>
-    <div class="cta-content reveal">
-        <div class="eyebrow"><i></i> TANDAR · CNEA</div>
-        <h2>Todo el circuito,<br><em>en un solo lugar.</em></h2>
-        <p>Gestión de turnos, aprobaciones, calendario, historial y documentación final mediante un flujo digital.</p>
-        <div class="cta-actions"><a class="btn primary" href="#top">Volver arriba <span>↑</span></a></div>
-    </div>
-</section>
+    <!-- ── 05 MANUAL DETALLADO ── -->
+    <section class="m-section" id="manual">
+        <div class="m-head">
+            <div class="tn-section-title"><span class="m-dot"></span>05 · Manual detallado</div>
+            <h2 class="m-h2">Todo el sistema, rol por rol.</h2>
+        </div>
+
+        <nav class="m-chips" aria-label="Secciones del manual">
+            <a class="m-chip" href="#acceso">Acceso</a>
+            <a class="m-chip" href="#investigador">Investigador</a>
+            <a class="m-chip" href="#responsable">Responsable de línea</a>
+            <a class="m-chip" href="#radioproteccion">Radioprotección</a>
+            <a class="m-chip" href="#administrador">Jefe de Operaciones</a>
+            <a class="m-chip" href="#comunes">Funciones comunes</a>
+            <a class="m-chip" href="#documento">Documento final</a>
+        </nav>
+
+        <!-- Acceso -->
+        <article class="tn-card inv m-article m-prose" id="acceso">
+            <div class="tn-card-header"><h3 class="tn-card-id">Acceso al sistema</h3><span class="tn-badge inv">General</span></div>
+            <h4 class="m-h4">Crear una cuenta</h4>
+            <p>Desde la pantalla de inicio de sesión, hacé clic en “Crear cuenta” y completá nombre, apellido, email y contraseña (mínimo 8 caracteres, con confirmación). Toda cuenta nueva se crea con el rol “Investigador”.</p>
+            <h4 class="m-h4">Iniciar sesión</h4>
+            <p>Ingresá tu email y contraseña en <code>/auth/login.php</code>. Si las credenciales son correctas, el sistema te lleva automáticamente al panel correspondiente a tu rol.</p>
+            <h4 class="m-h4">Recuperar contraseña</h4>
+            <p>Desde “¿Olvidaste la contraseña?” ingresá tu email para recibir un enlace que permite definir una contraseña nueva. El enlace tiene un tiempo de validez limitado.</p>
+        </article>
+
+        <!-- Investigador -->
+        <article class="tn-card modif m-article m-prose" id="investigador">
+            <div class="tn-card-header"><h3 class="tn-card-id">Investigador</h3><span class="tn-badge modif">ROL 01</span></div>
+            <h4 class="m-h4">Solicitar un turno</h4>
+            <ul>
+                <li>Línea experimental y rango de fechas (desde / hasta).</li>
+                <li>Título del experimento, tipo de haz, tipo de blanco y características del blanco.</li>
+                <li>Lista de investigadores participantes, hasta 20.</li>
+                <li>Tabla de iones/haz: ion, símbolo, corriente (pnA), tensión terminal (MV) y energía (MeV), hasta 10 filas.</li>
+                <li>Irradiación nocturna y días concretos, cuando corresponda.</li>
+                <li>Permanencia en sala y observaciones libres.</li>
+            </ul>
+            <div class="tn-alert info"><strong>Importante:</strong> el sistema no permite elegir fechas ya reservadas en esa línea ni fechas pasadas.</div>
+
+            <h4 class="m-h4">Mis turnos</h4>
+            <p>Es el panel principal del investigador. Muestra una tarjeta por cada solicitud con línea, fechas, estado y observaciones, ordenadas de la más reciente a la más antigua.</p>
+            <ul>
+                <li>Editar mientras esté “Pendiente Responsable” y no tenga contrapropuesta enviada.</li>
+                <li>Confirmar, rechazar o contraproponer una fecha ante una propuesta del responsable.</li>
+                <li>Confirmar o rechazar una propuesta del Jefe de Operaciones.</li>
+                <li>Consultar el motivo de una solicitud rechazada.</li>
+                <li>Ocultar del propio historial las solicitudes ya finalizadas.</li>
+            </ul>
+        </article>
+
+        <!-- Responsable -->
+        <article class="tn-card pend m-article m-prose" id="responsable">
+            <div class="tn-card-header"><h3 class="tn-card-id">Responsable de línea</h3><span class="tn-badge pend">ROL 02</span></div>
+            <p>El menú incluye Solicitudes, Historial, Calendario y Último momento. Si no tiene ninguna línea asignada, el sistema muestra un aviso para contactar al Oficial de Radioprotección.</p>
+            <h4 class="m-h4">Acciones sobre solicitudes</h4>
+            <div class="tn-tabla-wrap">
+                <table class="tn-tabla">
+                    <thead><tr><th>Acción</th><th>Qué pide</th><th>Qué sucede</th></tr></thead>
+                    <tbody>
+                        <tr><td><span class="tn-badge aprov">Aprobar</span></td><td>Nada adicional.</td><td>Pasa a “Pendiente de Radioprotección” y se notifica al Oficial.</td></tr>
+                        <tr><td><span class="tn-badge rech">Rechazar</span></td><td>Motivo obligatorio.</td><td>Queda “Rechazada por responsable” y se notifica al investigador.</td></tr>
+                        <tr><td><span class="tn-badge modif">Proponer modificación</span></td><td>Fecha desde / hasta y motivo.</td><td>Pasa a “Modificada por responsable” y el investigador debe responder.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <h4 class="m-h4">Confirmadas por el usuario</h4>
+            <p>Cuando el investigador confirma una fecha propuesta por el responsable, la solicitud aparece en la sección de confirmadas y el responsable debe presionar “Enviar al Oficial de Radioprotección” para que continúe el circuito.</p>
+        </article>
+
+        <!-- Radioprotección -->
+        <article class="tn-card aprov m-article m-prose" id="radioproteccion">
+            <div class="tn-card-header"><h3 class="tn-card-id">Oficial de Radioprotección</h3><span class="tn-badge aprov">ROL 03</span></div>
+            <p>Este rol recibe las solicitudes aprobadas por el responsable de línea y realiza la evaluación de seguridad radiológica mediante la “Página 2”.</p>
+            <h4 class="m-h4">Completar Página 2</h4>
+            <ul>
+                <li>Condición de operación: A, B, C1, C2 o D.</li>
+                <li>Personal mínimo requerido: “1 Operador”, “1 Operador + 1 usuario calificado” o “1 Operador + 1 Oficial de radioprotección”.</li>
+                <li>Otras indicaciones mediante casilleros predefinidos.</li>
+                <li>Observaciones adicionales, opcionales.</li>
+            </ul>
+            <div class="tn-alert success"><strong>Al guardar:</strong> la solicitud pasa a “Pendiente Administrador” y se notifica al Jefe de Operaciones.</div>
+            <h4 class="m-h4">Rechazar una solicitud</h4>
+            <p>Si la solicitud no puede autorizarse por motivos de radioprotección, puede rechazarse indicando un motivo obligatorio.</p>
+        </article>
+
+        <!-- Jefe de Operaciones -->
+        <article class="tn-card celeste m-article m-prose" id="administrador">
+            <div class="tn-card-header"><h3 class="tn-card-id">Jefe de Operaciones</h3><span class="tn-badge celeste">ROL 04</span></div>
+            <p>Es el rol con más funciones: aprobación final, administración de usuarios y roles, asignación de líneas y avisos de cambios de último momento.</p>
+            <h4 class="m-h4">Aprobación final</h4>
+            <div class="tn-tabla-wrap">
+                <table class="tn-tabla">
+                    <thead><tr><th>Acción</th><th>Qué pide</th><th>Resultado</th></tr></thead>
+                    <tbody>
+                        <tr><td><span class="tn-badge aprov">Aprobar</span></td><td>Página 2 completa.</td><td>Asigna número, reserva fecha, notifica al investigador y habilita el documento final.</td></tr>
+                        <tr><td><span class="tn-badge rech">Rechazar</span></td><td>Motivo obligatorio.</td><td>La solicitud queda rechazada.</td></tr>
+                        <tr><td><span class="tn-badge pend">Devolver a RP</span></td><td>Motivo obligatorio.</td><td>Vuelve al Oficial de Radioprotección.</td></tr>
+                        <tr><td><span class="tn-badge modif">Proponer modificación</span></td><td>Fechas propuestas y motivo.</td><td>El investigador debe confirmar o rechazar la nueva fecha.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <h4 class="m-h4">Editar Página 2</h4>
+            <p>Desde el detalle de cada solicitud también se puede acceder a “Editar Página 2” para corregir la evaluación de radioprotección sin devolver el trámite al Oficial.</p>
+
+            <h4 class="m-h4">Administración de usuarios</h4>
+            <ul>
+                <li>Cambiar el rol de otras cuentas.</li>
+                <li>Activar o desactivar cuentas.</li>
+                <li>Eliminar cuentas; si poseen historial, se desactivan para conservar la trazabilidad.</li>
+                <li>Asignar o quitar líneas experimentales a Responsables de línea.</li>
+            </ul>
+            <div class="tn-alert warn"><strong>Seguridad:</strong> no se puede cambiar el propio rol, ni desactivarse o eliminarse a uno mismo.</div>
+
+            <h4 class="m-h4">Avisar un cambio de último momento</h4>
+            <ol>
+                <li>Buscar y seleccionar el turno afectado.</li>
+                <li>Subir un archivo Excel (.xlsx) con “Hora desde” y “Hora hasta”.</li>
+                <li>Escribir un resumen para el investigador y el responsable, o dejar que el sistema lo genere automáticamente.</li>
+                <li>Enviar el aviso. Los destinatarios reciben una notificación y pueden consultar el cambio y el Excel adjunto.</li>
+            </ol>
+        </article>
+
+        <!-- Funciones comunes -->
+        <article class="tn-card inv m-article m-prose" id="comunes">
+            <div class="tn-card-header"><h3 class="tn-card-id">Funciones comunes</h3><span class="tn-badge inv">General</span></div>
+            <h4 class="m-h4">Calendario</h4>
+            <p>Muestra en formato mensual todas las fechas reservadas por línea experimental, cada una con un color distinto.</p>
+            <h4 class="m-h4">Historial</h4>
+            <p>Reúne las solicitudes del sistema —o de las líneas propias, según el rol— agrupadas por mes y con buscador por solicitante, línea y experimento.</p>
+            <h4 class="m-h4">Notificaciones y “Último momento”</h4>
+            <p>El ícono muestra un punto rojo cuando existen avisos sin leer. Allí se listan los cambios de horario sobre turnos ya aprobados y se puede consultar la solicitud completa o descargar el Excel adjunto.</p>
+            <h4 class="m-h4">Modo oscuro</h4>
+            <p>El botón de sol/luna alterna entre modo claro y oscuro. La preferencia se guarda en el navegador y se mantiene entre sesiones.</p>
+        </article>
+
+        <!-- Documento final -->
+        <article class="tn-card modif m-article m-prose" id="documento">
+            <div class="tn-card-header"><h3 class="tn-card-id">Documento final</h3><span class="tn-badge aprov">Aprobada</span></div>
+            <p>Una vez que una solicitud queda “Aprobada”, desde “Ver detalle completo” o desde el historial se puede generar el documento final, identificado con el número de solicitud y el año.</p>
+            <div class="m-grid cols-3" style="margin-top:18px">
+                <div class="m-mini"><div class="m-num">01</div><h5>Página 1</h5><p>Datos del solicitante, línea, experimento, turno, tipo de haz y blanco, permanencia, irradiación nocturna y observaciones.</p></div>
+                <div class="m-mini"><div class="m-num">02</div><h5>Página 2</h5><p>Condición de operación, personal mínimo, indicaciones, observaciones, Oficial responsable y fecha.</p></div>
+                <div class="m-mini"><div class="m-num">03</div><h5>Exportación</h5><p>Impresión o guardado como PDF. El Jefe de Operaciones también puede descargar una versión editable en Excel.</p></div>
+            </div>
+        </article>
+    </section>
+
+    <!-- ── 06 ESTADOS ── -->
+    <section class="m-section" id="estados">
+        <div class="m-head">
+            <div class="tn-section-title"><span class="m-dot"></span>06 · Estados</div>
+            <h2 class="m-h2">Glosario de estados.</h2>
+        </div>
+
+        <div class="m-grid cols-2 m-states">
+            <div class="tn-card pend"><div class="tn-card-header"><span class="tn-badge pend">Pendiente Responsable</span></div><p class="m-desc">Recién creada; espera la revisión del responsable.</p></div>
+            <div class="tn-card modif"><div class="tn-card-header"><span class="tn-badge modif">Modificada por responsable</span></div><p class="m-desc">El responsable propuso otra fecha; espera respuesta.</p></div>
+            <div class="tn-card rech"><div class="tn-card-header"><span class="tn-badge rech">Rechazada por responsable</span></div><p class="m-desc">El responsable de línea rechazó la solicitud.</p></div>
+            <div class="tn-card aprov"><div class="tn-card-header"><span class="tn-badge aprov">Confirmada — esperando envío</span></div><p class="m-desc">El investigador confirmó la propuesta; falta el envío al Oficial.</p></div>
+            <div class="tn-card pend"><div class="tn-card-header"><span class="tn-badge pend">Pendiente de Radioprotección</span></div><p class="m-desc">Fue aprobada por el responsable y espera la Página 2.</p></div>
+            <div class="tn-card pend"><div class="tn-card-header"><span class="tn-badge pend">Pendiente Administrador</span></div><p class="m-desc">La Página 2 está completa; espera aprobación final.</p></div>
+            <div class="tn-card modif"><div class="tn-card-header"><span class="tn-badge modif">Modificación propuesta</span></div><p class="m-desc">El Jefe de Operaciones propuso otra fecha.</p></div>
+            <div class="tn-card inv"><div class="tn-card-header"><span class="tn-badge inv">Propuesta invalidada</span></div><p class="m-desc">La fecha propuesta fue tomada por otra solicitud.</p></div>
+            <div class="tn-card aprov"><div class="tn-card-header"><span class="tn-badge aprov">Aprobada</span></div><p class="m-desc">Turno confirmado, con número asignado y fecha reservada.</p></div>
+            <div class="tn-card rech"><div class="tn-card-header"><span class="tn-badge rech">Rechazada</span></div><p class="m-desc">Rechazada por Radioprotección o por el Jefe de Operaciones.</p></div>
+        </div>
+    </section>
+
+    <!-- ── 07 FAQ ── -->
+    <section class="m-section" id="faq">
+        <div class="m-head">
+            <div class="tn-section-title"><span class="m-dot"></span>07 · Preguntas frecuentes</div>
+            <h2 class="m-h2">Preguntas frecuentes.</h2>
+        </div>
+
+        <details class="tn-card m-faq" open><summary>¿Por qué no puedo editar mi solicitud?</summary><p>Solo se puede editar mientras está “Pendiente Responsable”, antes de que el responsable de línea la haya aprobado, rechazado o propuesto una modificación.</p></details>
+        <details class="tn-card m-faq"><summary>¿Qué pasa si borro mi historial por error?</summary><p>No se pierde información. La acción solo oculta de tu propia vista las solicitudes ya finalizadas; los demás roles siguen viéndolas y quedan registradas.</p></details>
+        <details class="tn-card m-faq"><summary>¿Por qué una propuesta de fecha aparece como invalidada?</summary><p>Mientras se esperaba una respuesta, esa fecha fue tomada por otra solicitud en la misma línea experimental. Hay que solicitar o proponer una fecha que siga disponible.</p></details>
+        <details class="tn-card m-faq"><summary>¿Por qué el botón “Aprobar” del Jefe de Operaciones está deshabilitado?</summary><p>Porque el Oficial de Radioprotección todavía no completó la Página 2. Hay que esperar a que la complete o, si corresponde, usar “Devolver a RP”.</p></details>
+        <details class="tn-card m-faq"><summary>¿Cómo consigo el rol de Responsable de línea u Oficial de Radioprotección?</summary><p>El rol se asigna manualmente desde “Administración de Usuarios”, función exclusiva del Jefe de Operaciones. Hay que solicitarlo a quien cumpla ese rol en el grupo.</p></details>
+
+        <div class="tn-back-wrap"><a class="tn-btn lg plain" href="#top">↑ Volver al inicio</a></div>
+    </section>
 
 </main>
 
-<footer>
-    <div class="footer-brand"><span class="brand-mark small"><span></span><span></span><span></span></span><b>TANDAR-CNEA</b></div>
+<!-- ── FOOTER ── -->
+<footer class="tn-footer">
+    <img class="tn-logo" src="cnea-logo.png" alt="Logo de la CNEA">
+    <strong>TANDAR-CNEA · Manual de usuario</strong>
     <span>Centro Atómico Constituyentes · Comisión Nacional de Energía Atómica (CNEA)</span>
-    <a href="#top">Manual de usuario ↑</a>
 </footer>
 
 <script>
-const body = document.body;
-const themeBtn = document.getElementById("themeBtn");
-const savedTheme = localStorage.getItem("tandar-theme");
+(function () {
+    var root = document.documentElement;
+    var btn = document.getElementById("themeBtn");
 
-if (savedTheme === "dark") {
-    body.classList.add("dark");
-    themeBtn.textContent = "☾";
-}
-
-themeBtn.addEventListener("click", () => {
-    body.classList.toggle("dark");
-    const dark = body.classList.contains("dark");
-    localStorage.setItem("tandar-theme", dark ? "dark" : "light");
-    themeBtn.textContent = dark ? "☾" : "☼";
-});
-
-const menuBtn = document.getElementById("menuBtn");
-const nav = document.querySelector(".nav");
-menuBtn.addEventListener("click", () => {
-    nav.classList.toggle("mobile-open");
-});
-
-document.querySelectorAll(".nav-links a").forEach(link => {
-    link.addEventListener("click", () => nav.classList.remove("mobile-open"));
-});
-
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add("visible");
+    function paint() { btn.textContent = root.getAttribute("data-theme") === "dark" ? "☾" : "☼"; }
+    paint();
+    btn.addEventListener("click", function () {
+        var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", next);
+        try { localStorage.setItem("tandar-theme", next); } catch (e) {}
+        paint();
     });
-}, { threshold: 0.08 });
 
-document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
+    /* Menú móvil */
+    var toggle = document.getElementById("navToggle");
+    var links = document.getElementById("navLinks");
+    toggle.addEventListener("click", function () {
+        var open = links.classList.toggle("open");
+        toggle.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    links.querySelectorAll("a").forEach(function (a) {
+        a.addEventListener("click", function () {
+            links.classList.remove("open");
+            toggle.setAttribute("aria-expanded", "false");
+        });
+    });
+
+    /* Resalta en el menú la sección que se está leyendo */
+    var map = {};
+    links.querySelectorAll("a").forEach(function (a) { map[a.getAttribute("href").slice(1)] = a; });
+    var spy = new IntersectionObserver(function (entries) {
+        entries.forEach(function (e) {
+            if (e.isIntersecting && map[e.target.id]) {
+                Object.keys(map).forEach(function (k) { map[k].classList.remove("active"); });
+                map[e.target.id].classList.add("active");
+            }
+        });
+    }, { rootMargin: "-25% 0px -65% 0px" });
+    Object.keys(map).forEach(function (id) {
+        var el = document.getElementById(id);
+        if (el) spy.observe(el);
+    });
+})();
 </script>
 
 </body>
